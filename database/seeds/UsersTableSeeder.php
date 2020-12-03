@@ -11,11 +11,14 @@ class UsersTableSeeder extends Seeder
      */
     public function run()
     {
+
+        $date   = date('Y-m-d g:i:s');
         //
         \App\User::create([
             'name'  => 'seli',
             'email' => 'susantiseli03@gmail.com',
-            'password'  => bcrypt('12345678')
+            'password'  => bcrypt('12345678'),
+            'email_verified_at'  => $date,
         ]);
     }
 }

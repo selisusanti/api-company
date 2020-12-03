@@ -19,14 +19,15 @@ use Illuminate\Http\Request;
 
 Route::post('login', 'API\UserController@login');
 Route::post('register', 'API\UserController@register');
+Route::get('email/verify/{id}', 'API\VerificationApiController@verify')->name('verificationapi.verify');
 
-Route::group(['middleware' => 'auth:api'], function(){
+Route::group(['middleware' => 'auth:api','verified'], function(){
     Route::post('details', 'API\UserController@details');
     Route::post('logout', 'API\UserController@logout');
 });
 
 Route::group([
-    'middleware' => 'auth:api'
+    'middleware' => 'auth:api' , 'verified'
 ], function () {
 
     Route::group([    

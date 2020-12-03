@@ -4,6 +4,7 @@ namespace App\Http\Controllers\API;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Jobs\EmailVerificationJob;
 use App\User;
 use Illuminate\Support\Facades\Auth;
 use Validator;
@@ -44,6 +45,7 @@ class UserController extends Controller
         $success['token'] =  $user->createToken('nApp')->accessToken;
         $success['name'] =  $user->name;
 
+        dispatch(new EmailVerificationJob($user));
         return response()->json(['success'=>$success], $this->successStatus);
     }
 
