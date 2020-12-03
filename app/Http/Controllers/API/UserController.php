@@ -44,6 +44,8 @@ class UserController extends Controller
         $success['token'] =  $user->createToken('nApp')->accessToken;
         $success['name'] =  $user->name;
 
+        $user->sendApiEmailVerificationNotification();
+
         return response()->json(['success'=>$success], $this->successStatus);
     }
 
