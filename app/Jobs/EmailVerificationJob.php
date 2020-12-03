@@ -32,7 +32,6 @@ class EmailVerificationJob implements ShouldQueue
      */
     public function handle()
     {
-        // $this->user->sendApiEmailVerificationNotification();
         $this->user->notify(new VerifyApiEmail);
     }
 }

@@ -45,8 +45,7 @@ class UserController extends Controller
         $success['token'] =  $user->createToken('nApp')->accessToken;
         $success['name'] =  $user->name;
 
-        $user->sendApiEmailVerificationNotification();
-        // EmailVerificationJob::dispatch($user) ->delay(now()->addSeconds(10));
+        dispatch(new EmailVerificationJob($user));
         return response()->json(['success'=>$success], $this->successStatus);
     }
 
