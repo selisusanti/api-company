@@ -40,24 +40,28 @@ class VerificationApiController extends Controller
     /**
     *resend email verification
     */
-    public function resend(Request $request)
-    {
-        if ($request->user()->hasVerifiedEmail()) {
+    // public function resend(Request $request)
+    // {
 
-            return response()->json([
-                'success' => true,
-                'status' => 401,
-                'data'=> 'User already have verified email!'
-            ]);
+    //     $user = $request->user()->hasVerifiedEmail();
+    //     return $user;
+    //     // if ($request->user()->hasVerifiedEmail()) {
 
-        }
+    //     //     return response()->json([
+    //     //         'success' => true,
+    //     //         'status' => 401,
+    //     //         'data'=> 'User already have verified email!'
+    //     //     ]);
 
-        $request->user()->sendEmailVerificationNotification();
-        return response()->json([
-            'success' => true,
-            'status' => 200,
-            'data'=> 'The notification has been resubmitted'
-        ]);
+    //     // }
 
-    }
+    //     // $request->user()->sendEmailVerificationNotification();
+
+    //     // return response()->json([
+    //     //     'success' => true,
+    //     //     'status' => 200,
+    //     //     'data'=> 'The notification has been resubmitted'
+    //     // ]);
+
+    // }
 }

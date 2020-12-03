@@ -7,6 +7,7 @@ use App\Notifications\VerifyApiEmail;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use App\Jobs\EmailVerificationJob;
 
 class User extends Authenticatable implements MustVerifyEmail
 {
@@ -42,5 +43,6 @@ class User extends Authenticatable implements MustVerifyEmail
     public function sendApiEmailVerificationNotification()
     {
         $this->notify(new VerifyApiEmail); // my notification
+        // EmailVerificationJob::dispatch($this);
     }
 }
